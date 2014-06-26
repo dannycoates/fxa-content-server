@@ -41,6 +41,7 @@ define([
     }, dfd.reject.bind(dfd)));
   };
 
+  /*
   suite['#oauth server proxied GET request'] = function () {
     var dfd = this.async(1000);
 
@@ -64,6 +65,7 @@ define([
       assert.equal(res.statusCode, 400);
     }, dfd.reject.bind(dfd)));
   };
+  */
 
 
   registerSuite(suite);
