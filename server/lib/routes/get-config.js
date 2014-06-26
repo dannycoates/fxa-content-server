@@ -9,8 +9,12 @@ var publicUrl = config.get('public_url');
 var authServerUrl = config.get('fxaccount_url');
 var oauthServerUrl = config.get('oauth_url');
 
+function isIE8(userAgent) {
+  return /MSIE 8\.0/.test(userAgent);
+}
+
 function getAuthServerUrl(userAgent) {
-  if (/MSIE 8\.0/.test(userAgent)) {
+  if (isIE8(userAgent)) {
     return publicUrl + '/auth';
   }
 
@@ -18,7 +22,7 @@ function getAuthServerUrl(userAgent) {
 }
 
 function getOAuthServerUrl(userAgent) {
-  if (/MSIE 8\.0/.test(userAgent)) {
+  if (isIE8(userAgent)) {
     return publicUrl + '/oauth';
   }
 

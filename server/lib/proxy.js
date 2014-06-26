@@ -37,7 +37,14 @@ module.exports = function (req, res, next) {
 
     proxy.web(req, res, { target: target }, function (e) {
       logger.error('proxy error: %s', String(e));
-      res.send(500, 'uh oh');
+
+      res.send(503, JSON.stringify({
+        code: 503,
+        error: 'Service Unavailable',
+        // 998 is the client side errno to display `System unavailable`
+        errno: 998,
+        message: 'Service unavailable'
+      }));
     });
   });
 };
