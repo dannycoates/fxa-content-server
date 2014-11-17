@@ -106,7 +106,8 @@ function toLoggableEvent(event) {
     'campaign',
     'marketingLink',
     'marketingType',
-    'marketingClicked'
+    'marketingClicked',
+    'ab'
   ], loggableEvent, event);
 
   addNavigationTiming(loggableEvent, event);

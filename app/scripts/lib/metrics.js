@@ -22,8 +22,9 @@ define([
   'lib/xhr',
   'lib/promise',
   'lib/url',
-  'lib/strings'
-], function (_, Backbone, $, speedTrap, xhr, p, Url, Strings) {
+  'lib/strings',
+  'lib/ab'
+], function (_, Backbone, $, speedTrap, xhr, p, Url, Strings, AB) {
   'use strict';
 
   // Speed trap is a singleton, convert it
@@ -46,7 +47,8 @@ define([
     'referrer',
     'screen',
     'service',
-    'timers'
+    'timers',
+    'ab'
   ];
 
   var TEN_MINS_MS = 10 * 60 * 1000;
@@ -146,7 +148,8 @@ define([
         marketingType: this._marketingType || 'none',
         marketingLink: this._marketingLink || 'none',
         marketingClicked: this._marketingClicked || false,
-        campaign: this._campaign
+        campaign: this._campaign,
+        ab: AB.data()
       }, loadData, unloadData);
 
       return allData;
@@ -264,5 +267,3 @@ define([
 
   return Metrics;
 });
-
-
