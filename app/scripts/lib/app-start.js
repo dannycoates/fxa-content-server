@@ -22,6 +22,7 @@ define([
   'backbone',
   'lib/promise',
   'router',
+  'lib/ab',
   'lib/translator',
   'lib/session',
   'lib/url',
@@ -49,6 +50,7 @@ function (
   Backbone,
   p,
   Router,
+  AB,
   Translator,
   Session,
   Url,
@@ -145,7 +147,7 @@ function (
                     .then(_.bind(this.initializeAuthenticationBroker, this))
                     // storage format upgrades depend on user
                     .then(_.bind(this.upgradeStorageFormats, this))
-
+                    .then(_.bind(this.initializeAB, this))
                     // metrics depends on the relier.
                     .then(_.bind(this.initializeMetrics, this))
                     // router depends on all of the above
@@ -156,6 +158,10 @@ function (
       this._config = config;
       this._configLoader.useConfig(config);
       Session.set('config', config);
+    },
+
+    initializeAB: function () {
+      AB.load(this._config.experiments);
     },
 
     initializeL10n: function () {

@@ -71,10 +71,10 @@ module.exports = function (i18n) {
       oauthClientId: clientId,
       // req.lang is set by abide in a previous middleware.
       language: req.lang,
-      metricsSampleRate: config.get('metrics.sample_rate')
+      metricsSampleRate: config.get('metrics.sample_rate'),
+      experiments: { foo: 25 }
     });
   };
 
   return route;
 };
-
