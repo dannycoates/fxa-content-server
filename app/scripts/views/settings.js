@@ -7,12 +7,13 @@
 define([
   'underscore',
   'lib/session',
+  'lib/ab',
   'views/form',
   'views/base',
   'views/mixins/avatar-mixin',
   'stache!templates/settings'
 ],
-function (_, Session, FormView, BaseView, AvatarMixin, Template) {
+function (_, Session, AB, FormView, BaseView, AvatarMixin, Template) {
   var t = BaseView.t;
 
   var View = FormView.extend({
@@ -42,9 +43,11 @@ function (_, Session, FormView, BaseView, AvatarMixin, Template) {
     },
 
     context: function () {
+      var email = this.currentAccount().get('email')
       return {
-        email: this.currentAccount().get('email'),
-        showSignOut: !this.currentAccount().isFromSync()
+        email: email,
+        showSignOut: !this.currentAccount().isFromSync(),
+        showAvatarLink: AB.isEnabled('avatar', email)
       };
     },
 

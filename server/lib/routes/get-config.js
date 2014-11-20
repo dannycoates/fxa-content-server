@@ -72,7 +72,10 @@ module.exports = function (i18n) {
       // req.lang is set by abide in a previous middleware.
       language: req.lang,
       metricsSampleRate: config.get('metrics.sample_rate'),
-      experiments: { foo: 25 }
+      experiments: {
+        avatar: { test: '@mozilla.com$'},
+        foo: { percentEnabled: 25 }
+      }
     });
   };
 

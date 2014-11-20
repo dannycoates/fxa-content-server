@@ -26,13 +26,24 @@ define([
       }
       return roll;
     },
-    isEnabled: function (name) {
-      var enabled = this._experiments[name] !== false;
+    isEnabled: function () {
+      var args = Array.prototype.slice.call(arguments, 1)
+      var name = arguments[0]
+      var enabled = this._experiments[name].apply(this, args);
       this._data[name] = enabled;
       return enabled;
     },
-    addExperiment: function (name, percentEnabled) {
-      this._experiments[name] = (this._roll % 100) < percentEnabled;
+    addExperiment: function (name, parameters) {
+      var fn;
+      if (parameters.test) {
+        var re = new RegExp(parameters.test);
+        fn = function (x) { return re.test(x); }
+      }
+      else if (parameters.percentEnabled) {
+        var enabled = (this._roll % 100) < parameters.percentEnabled;
+        fn = function () { return enabled; }
+      }
+      this._experiments[name] = fn;
     },
     load: function (experiments) {
       for (name in experiments) {

@@ -12,6 +12,11 @@
     <p class="signed-in-email-message">{{#t}}You are signed in as{{/t}}<br />{{email}}</p>
 
     <ul class="links">
+      {{#showAvatarLink}}
+      <li>
+        <a id="avatar" href="/settings/avatar/change">{{#t}}Change account picture{{/t}}</a>
+      </li>
+      {{/showAvatarLink}}
       <li>
         <a id="change-password" href="/change_password">{{#t}}Change password{{/t}}</a>
       </li>
