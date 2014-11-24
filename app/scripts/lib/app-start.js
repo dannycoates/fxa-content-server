@@ -147,6 +147,7 @@ function (
                     .then(_.bind(this.initializeAuthenticationBroker, this))
                     // storage format upgrades depend on user
                     .then(_.bind(this.upgradeStorageFormats, this))
+
                     // metrics depends on the relier.
                     .then(_.bind(this.initializeMetrics, this))
                     // router depends on all of the above
