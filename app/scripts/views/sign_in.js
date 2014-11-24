@@ -16,11 +16,10 @@ define([
   'lib/validate',
   'views/mixins/service-mixin',
   'views/mixins/avatar-mixin',
-  'views/decorators/progress_indicator',
-  'lib/ab'
+  'views/decorators/progress_indicator'
 ],
 function (_, p, BaseView, FormView, SignInTemplate, Session, PasswordMixin,
-      AuthErrors, Validate, ServiceMixin, AvatarMixin, showProgressIndicator, AB) {
+      AuthErrors, Validate, ServiceMixin, AvatarMixin, showProgressIndicator) {
   var t = BaseView.t;
 
   var View = FormView.extend({

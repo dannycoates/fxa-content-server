@@ -7,13 +7,12 @@
 define([
   'underscore',
   'lib/session',
-  'lib/ab',
   'views/form',
   'views/base',
   'views/mixins/avatar-mixin',
   'stache!templates/settings'
 ],
-function (_, Session, AB, FormView, BaseView, AvatarMixin, Template) {
+function (_, Session, FormView, BaseView, AvatarMixin, Template) {
   var t = BaseView.t;
 
   var View = FormView.extend({

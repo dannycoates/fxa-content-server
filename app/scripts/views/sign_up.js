@@ -14,11 +14,10 @@ define([
   'lib/auth-errors',
   'lib/strings',
   'views/mixins/password-mixin',
-  'views/mixins/service-mixin',
-  'lib/ab'
+  'views/mixins/service-mixin'
 ],
 function (_, p, BaseView, FormView, Template, Session, AuthErrors,
-      Strings, PasswordMixin, ServiceMixin, AB) {
+      Strings, PasswordMixin, ServiceMixin) {
   var t = BaseView.t;
 
   function selectAutoFocusEl(bouncedEmail, email, password) {

@@ -22,9 +22,8 @@ define([
   'lib/xhr',
   'lib/promise',
   'lib/url',
-  'lib/strings',
-  'lib/ab'
-], function (_, Backbone, $, speedTrap, xhr, p, Url, Strings, AB) {
+  'lib/strings'
+], function (_, Backbone, $, speedTrap, xhr, p, Url, Strings) {
   'use strict';
 
   // Speed trap is a singleton, convert it
@@ -149,7 +148,7 @@ define([
         marketingLink: this._marketingLink || 'none',
         marketingClicked: this._marketingClicked || false,
         campaign: this._campaign,
-        ab: AB.data()
+        ab: AB.report()
       }, loadData, unloadData);
 
       return allData;
