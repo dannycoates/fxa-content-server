@@ -46,7 +46,7 @@ function (_, Session, FormView, BaseView, AvatarMixin, Template) {
       return {
         email: email,
         showSignOut: !this.currentAccount().isFromSync(),
-        showAvatarLink: AB.isEnabled('avatar', email)
+        avatarLinkVisible: AB.choose('avatarLinkVisible', { email: email })
       };
     },
 
