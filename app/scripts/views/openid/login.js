@@ -5,7 +5,7 @@
 define([
   'cocktail',
   'views/base',
-  'stache!templates/openid',
+  'stache!templates/openid/login',
   'lib/session'
 ],
 function (Cocktail, BaseView, Template, Session) {
@@ -19,30 +19,23 @@ function (Cocktail, BaseView, Template, Session) {
       BaseView.prototype.initialize.call(this, options);
       options = options || {};
 
-      this._err = this.relier.get('err');
-      this._uid = this.relier.get('uid');
-      this._sessionToken = this.relier.get('session');
-      this._keyFetchToken = this.relier.get('key');
-      this._unwrapBKey = this.relier.get('unwrap');
-      this._email = this.relier.get('email')
       Session.clear();
       this.user.clearSignedInAccount();
     },
 
     beforeRender: function () {
       var self = this;
-      if (self._err) {
-        throw new Error(self._err);
+      if (OPENID_SESSION.err) {
+        throw new Error(OPENID_SESSION.err);
       }
       var account = self.user.initAccount({
-        uid: self._uid,
-        sessionToken: self._sessionToken,
-        keyFetchToken: self._keyFetchToken,
+        uid: OPENID_SESSION.uid,
+        sessionToken: OPENID_SESSION.session,
+        keyFetchToken: OPENID_SESSION.key,
         verified: true,
-        unwrapBKey: this._unwrapBKey,
-        email: this._email
+        unwrapBKey: OPENID_SESSION.unwrap,
+        email: OPENID_SESSION.email
       });
-
       return self.user.setSignedInAccount(account)
         .then(function () {
           self.logScreenEvent('success');

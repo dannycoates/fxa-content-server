@@ -5,14 +5,14 @@
 define([
   'views/base',
   'views/form',
-  'stache!templates/start'
+  'stache!templates/openid/start'
 ],
 function (BaseView, FormView, Template) {
   'use strict';
 
   var View = FormView.extend({
     template: Template,
-    className: 'start',
+    className: 'openid-start',
 
     events: {
       'click #fxa-button': BaseView.preventDefaultThen('_goToSignUp')
@@ -25,9 +25,8 @@ function (BaseView, FormView, Template) {
     submit: function () {
       var form = this.getFormValues();
 
-      this.window.location = this.relier.authServerUrl +
-              '/v1/account/openid/authenticate?identifier=' +
-              encodeURIComponent(form.openid);
+      this.window.location = '/openid/authenticate?identifier=' +
+        encodeURIComponent(form.openid);
       return { halt: true };
     }
 

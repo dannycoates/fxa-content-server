@@ -38,8 +38,8 @@ define([
   'views/clear_storage',
   'views/unexpected_error',
   'views/permissions',
-  'views/openid',
-  'views/start'
+  'views/openid/login',
+  'views/openid/start'
 ],
 function (
   _,
@@ -127,8 +127,8 @@ function (
       'confirm_account_unlock(/)': showView(ConfirmAccountUnlockView),
       'complete_unlock_account(/)': showView(CompleteAccountUnlockView),
       'account_unlock_complete(/)': showView(ReadyView, { type: 'account_unlock' }),
-      'openid(/)': showView(OpenIdView),
-      'start(/)': showView(StartView)
+      'openid/login(/)': showView(OpenIdView),
+      'openid/start(/)': showView(StartView)
     },
 
     initialize: function (options) {
